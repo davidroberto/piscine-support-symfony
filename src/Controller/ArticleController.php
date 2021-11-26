@@ -11,7 +11,7 @@ class ArticleController
 {
 
     /**
-     * @Route("/article-get")
+     * @Route("/article-get", name="article_get")
      */
     public function articleGetShow()
     {
@@ -50,7 +50,7 @@ class ArticleController
     /**
      * je créé une url qui contient une "wildcard"
      * c'est à dire une portion d'url qui est variable
-     * @Route("/article-wildcard/{article}")
+     * @Route("/article-wildcard/{article}", name="article_wildcard")
      */
     // pour récupérer la valeur de la wildcard
     // je passe un parametre à la méthode qui a le même

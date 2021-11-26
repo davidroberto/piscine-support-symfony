@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
-class PageController
+// je fais hériter ma classe PageController de la classe AbstractController de Symfony
+// ce qui me permet d'utiliser dans ma classe (avec le mot clé $this) des méthodes
+// et propriétés définies dans la classe AbstractController
+class PageController extends AbstractController
 {
 
     /**
@@ -16,7 +20,7 @@ class PageController
      * est la page d'accueil.
      * Ma route va appeler la méthode home, car l'annotation
      * est placée au dessus de la méthode
-     * @Route("/")
+     * @Route("/", name="home")
      */
     public function home()
     {
@@ -24,7 +28,7 @@ class PageController
     }
 
     /**
-     * @Route("/contact")
+     * @Route("/contact", name="contact")
      */
     public function contact()
     {
@@ -32,7 +36,7 @@ class PageController
     }
 
     /**
-     * @Route("/beuverie")
+     * @Route("/beuverie", name="beuverie")
      */
     public function beuverie()
     {
@@ -55,8 +59,11 @@ class PageController
             $response = new Response('Merci de remplir l\'âge');
             return $response;
         } elseif($age < 18) {
-            $response = new Response('Pas l\âge !');
-            return $response;
+            // j'utilise la méthode redirectToRoute, issue de la classe
+            // étendue AbstractController
+            // cette méthode me permet de faire une redirection vers la route
+            // donc le nom est "contact"
+            return $this->redirectToRoute("contact");
         } else {
             $response = new Response('Picole');
             return $response;
