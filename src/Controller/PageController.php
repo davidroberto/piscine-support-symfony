@@ -63,7 +63,8 @@ class PageController extends AbstractController
             // étendue AbstractController
             // cette méthode me permet de faire une redirection vers la route
             // donc le nom est "contact"
-            return $this->redirectToRoute("contact");
+            $url = $this->generateUrl('route');
+            return new RedirectResponse($url);
         } else {
             $response = new Response('Picole');
             return $response;

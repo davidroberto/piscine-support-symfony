@@ -3,11 +3,12 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArticleController
+class ArticleController extends AbstractController
 {
 
     /**
@@ -72,6 +73,20 @@ class ArticleController
 
         $response = new Response($articleRequested);
         return $response;
+    }
+
+
+    /**
+     * @Route("/profile")
+     */
+    public function profile()
+    {
+        // je veux utiliser un fichier HTML en tant que réponse
+        // HTTP
+        // pour ça j'appelle la méthode render (issue de l'AbstractController)
+        // et je lui passe en premier parametre le nom / le chemin du fichier
+        // twig (html) situé dans le dossier template
+        return $this->render("profile.html.twig");
     }
 
 }
