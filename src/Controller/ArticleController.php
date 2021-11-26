@@ -77,7 +77,7 @@ class ArticleController extends AbstractController
 
 
     /**
-     * @Route("/profile")
+     * @Route("/profile", name="profile")
      */
     public function profile()
     {
